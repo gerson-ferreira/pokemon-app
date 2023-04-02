@@ -11,5 +11,10 @@ module.exports = {
       '<rootDir>/dist/',
       '<rootDir>/cypress/',
     ],
+    moduleNameMapper: {
+      '^@app/(.*)': '<rootDir>/src/app/$1',
+      '^@core/(.*)': '<rootDir>/src/app/core/$1',
+      '^@store/(.*)': '<rootDir>/store/$1'
+    }
   };
   
