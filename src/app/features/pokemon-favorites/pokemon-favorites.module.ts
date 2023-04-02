@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PokemonFavoritesComponent } from './pokemon-favorites.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PokemonFavoritesComponent
+  ],
   imports: [
     CommonModule
   ],
