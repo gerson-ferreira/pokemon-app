@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HighlightFavoriteDirective } from './directives/highlight-favorite.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [HighlightFavoriteDirective],
   imports: [CommonModule],
-  exports: [],
+  exports: [HighlightFavoriteDirective],
 })
 export class SharedModule {}

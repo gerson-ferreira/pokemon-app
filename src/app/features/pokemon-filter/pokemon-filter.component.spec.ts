@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokemonFilterComponent } from './pokemon-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('PokemonFilterComponent', () => {
   let component: PokemonFilterComponent;
@@ -8,7 +9,8 @@ describe('PokemonFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonFilterComponent ]
+      declarations: [ PokemonFilterComponent ],
+      imports: [ReactiveFormsModule] 
     })
     .compileComponents();
 
