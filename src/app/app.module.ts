@@ -8,11 +8,11 @@ import { PokemonCommentsComponent } from './features/pokemon-comments/pokemon-co
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonCommentsComponent
+    PokemonCommentsComponent,
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({}, {})
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
