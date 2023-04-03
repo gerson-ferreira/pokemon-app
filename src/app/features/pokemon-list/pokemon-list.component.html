@@ -1,6 +1,33 @@
-<div class="pokemon-list">
-    <div *ngFor="let pokemon of pokemons" [appHighlightFavorite]="isPokemonFavorite(pokemon)">
-      <!-- Conteúdo do card do Pokémon -->
+<div class="container">
+  <div class="search-container">
+    <input
+      [(ngModel)]="filterValue"
+      (ngModelChange)="onFilterValueChange($event)"
+      placeholder="Search"
+    />
+  </div>
+  <div class="pokemon-list">
+    <div *ngFor="let pokemon of filteredPokemons$ | async">
+      <app-pokemon-card
+        [pokemon]="pokemon"
+        (toggleFavorite)="toggleFavorite($event)"
+      ></app-pokemon-card>
     </div>
   </div>
-  
+  <div class="pagination">
+    <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      class="page-number"
+      (click)="goToPage(i + 1)"
+      [class.active]="currentPage === i + 1"
+    >
+      {{ i + 1 }}
+    </span>
+    <button (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>
