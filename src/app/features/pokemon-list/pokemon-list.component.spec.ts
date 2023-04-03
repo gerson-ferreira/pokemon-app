@@ -6,6 +6,7 @@ import { PokemonService } from '@app/core/services/pokemon.service';
 import { Pokemon } from 'src/app/shared/models/pokemon.model';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { toggleFavorite } from '@store/actions';
+import { FormsModule } from '@angular/forms';
 
 describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
@@ -30,6 +31,7 @@ describe('PokemonListComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [PokemonListComponent],
+      imports: [FormsModule ],
       providers: [
         { provide: PokemonService, useValue: pokemonServiceSpy },
         { provide: Store, useValue: storeSpy },
