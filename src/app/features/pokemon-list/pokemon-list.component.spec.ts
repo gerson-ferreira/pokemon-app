@@ -1,52 +1,35 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+import { Pokemon } from '@app/shared/models/pokemon.model';
+import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { PokemonListComponent } from './pokemon-list.component';
-import { PokemonService } from '@app/core/services/pokemon.service';
-import { Pokemon } from 'src/app/shared/models/pokemon.model';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { toggleFavorite } from '@store/actions';
-import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule } from '@angular/router';
 
-describe('PokemonListComponent', () => {
-  let component: PokemonListComponent;
-  let fixture: ComponentFixture<PokemonListComponent>;
-  let pokemonService: PokemonService;
-  let store: Store;
 
-  const mockPokemons: Pokemon[] = [
-    { id: 1, name: 'Bulbasaur', favorite: false },
-    { id: 2, name: 'Ivysaur', favorite: false },
-  ];
+
+describe('PokemonCardComponent', () => {
+  let component: PokemonCardComponent;
+  let fixture: ComponentFixture<PokemonCardComponent>;
+
+  const pokemon: Pokemon = {
+    id: 1,
+    name: 'Bulbasaur',
+    imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+  };
 
   beforeEach(async () => {
-    const pokemonServiceSpy = {
-      getPokemons: jest.fn().mockReturnValue(of(mockPokemons)),
-    };
-
-    const storeSpy = {
-      select: jest.fn().mockReturnValue(of([])),
-      dispatch: jest.fn(),
-    };
-
     await TestBed.configureTestingModule({
-      declarations: [PokemonListComponent],
-      imports: [FormsModule ],
-      providers: [
-        { provide: PokemonService, useValue: pokemonServiceSpy },
-        { provide: Store, useValue: storeSpy },
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [PokemonListComponent, PokemonCardComponent],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
     }).compileComponents();
-
-    pokemonService = TestBed.inject(PokemonService);
-    store = TestBed.inject(Store);
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PokemonListComponent);
+    fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
-
+    component.pokemon = pokemon;
     fixture.detectChanges();
   });
 
@@ -54,23 +37,31 @@ describe('PokemonListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with pokemons from service', () => {
-    component.pokemons$.subscribe(pokemons => {
-      expect(pokemons).toEqual(mockPokemons);
-    });
+  it('should display pokemon name', () => {
+    const nameEl = fixture.debugElement.query(By.css('.card-header')).nativeElement;
+    expect(nameEl.textContent).toContain(pokemon.name);
   });
 
-  it('should call store.dispatch when toggling a favorite', () => {
-    const pokemon = mockPokemons[0];
-    component.toggleFavorite(pokemon);
-    expect(store.dispatch).toHaveBeenCalledWith(toggleFavorite({ pokemon }));
+  it('should display pokemon image', () => {
+    const imgEl = fixture.debugElement.query(By.css('.card-img-top')).nativeElement;
+    expect(imgEl.src).toBe(pokemon.imageUrl);
   });
 
-  it('should filter pokemons based on filter value', (done) => {
-    component.onFilterValueChange('Ivysaur');
-    component.filteredPokemons$.subscribe(filteredPokemons => {
-      expect(filteredPokemons).toEqual([mockPokemons[1]]);
-      done();
-    });
+  it('should display pokemon id', () => {
+    const idEl = fixture.debugElement.query(By.css('.card-text')).nativeElement;
+    expect(idEl.textContent).toContain(`ID: ${pokemon.id}`);
+  });
+
+  it('should display pokemon types', () => {
+    const typesEl = fixture.debugElement.query(By.css('.text-muted')).nativeElement;
+
+  });
+
+  it('should not display water type', () => {
+
+    fixture.detectChanges();
+    const typesEl = fixture.debugElement.query(By.css('.text-muted')).nativeElement;
+    expect(typesEl.textContent).not.toContain('Water');
   });
 });
+

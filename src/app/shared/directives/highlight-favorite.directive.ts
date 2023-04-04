@@ -1,7 +1,13 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  Renderer2,
+} from '@angular/core';
 
 @Directive({
-  selector: '[appHighlightFavorite]'
+  selector: '[appHighlightFavorite]',
 })
 export class HighlightFavoriteDirective implements OnChanges {
   @Input()
@@ -19,7 +25,11 @@ export class HighlightFavoriteDirective implements OnChanges {
 
   private updateBackgroundColor(): void {
     if (this.isFavorite) {
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#f2f2f2');
+      this.renderer.setStyle(
+        this.el.nativeElement,
+        'background-color',
+        '#f2f2f2'
+      );
     } else {
       this.renderer.removeStyle(this.el.nativeElement, 'background-color');
     }

@@ -10,7 +10,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'pokemon-detail',
+    path: 'pokemon/:id',
     loadChildren: () =>
       import('./features/pokemon-detail/pokemon-detail.module').then(
         (m) => m.PokemonDetailModule

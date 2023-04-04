@@ -1,0 +1,29 @@
+/* Ajustes gerais */
+.container {
+  margin-top: 2rem;
+}
+
+/* Estilos para a imagem */
+.pokemon-detail-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Estilos para o botão */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+  color: #fff;
+}

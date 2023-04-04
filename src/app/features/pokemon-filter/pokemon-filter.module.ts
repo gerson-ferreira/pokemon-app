@@ -5,8 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PokemonFilterComponent } from './pokemon-filter.component';
 
 @NgModule({
-  declarations: [PokemonFilterComponent],
+  declarations: [],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [PokemonFilterComponent],
 })
 export class PokemonFilterModule {}

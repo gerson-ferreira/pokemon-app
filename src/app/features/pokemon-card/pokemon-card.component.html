@@ -1,1 +1,13 @@
-<p>pokemon-card works!</p>
+<div class="card mb-3">
+  <div class="card-header">{{ pokemon.name }}</div>
+  <div class="card-body">
+    <img [src]="pokemon.imageUrl" class="card-img-top" alt="..." />
+    <p class="card-text">ID: {{ pokemon.id }}</p>
+    <p class="card-text">
+      <small class="text-muted">Type: {{ pokemon.types }}</small>
+    </p>
+    <a [routerLink]="['/pokemon', pokemon.id]" class="btn btn-primary w-100"
+      >Ver detalhes</a
+    >
+  </div>
+</div>

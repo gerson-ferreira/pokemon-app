@@ -1,1 +1,23 @@
-<p>pokemon-detail works!</p>
+<div *ngIf="pokemon" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center my-4">{{ pokemon.name }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <img
+        [src]="pokemon.imageUrl"
+        alt="{{ pokemon.name }}"
+        class="pokemon-detail-image"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <p>ID: {{ pokemon.id }}</p>
+      <p>Type: {{ pokemon.types }}</p>
+      <a routerLink="/pokemon-list" class="btn btn-secondary"
+        >Voltar à listagem</a
+      >
+    </div>
+  </div>
+</div>

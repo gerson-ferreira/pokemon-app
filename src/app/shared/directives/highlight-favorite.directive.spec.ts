@@ -28,7 +28,6 @@ describe('HighlightFavoriteDirective', () => {
       setValue: () => null,
       listen: () => null,
     } as unknown as Renderer2;
-    
   });
 
   it('should create an instance', () => {

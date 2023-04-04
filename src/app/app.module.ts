@@ -2,19 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { PokemonCommentsComponent } from './features/pokemon-comments/pokemon-comments.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PokemonCommentsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    StoreModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, RouterModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
