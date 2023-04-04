@@ -1,33 +1,22 @@
 <div class="container">
-  <div class="search-container">
-    <input
-      [(ngModel)]="filterValue"
-      (ngModelChange)="onFilterValueChange($event)"
-      placeholder="Search"
-    />
-  </div>
-  <div class="pokemon-list">
-    <div *ngFor="let pokemon of filteredPokemons$ | async">
-      <app-pokemon-card
-        [pokemon]="pokemon"
-        (toggleFavorite)="toggleFavorite($event)"
-      ></app-pokemon-card>
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center my-4">Lista de Pokémons</h1>
     </div>
   </div>
-  <div class="pagination">
-    <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">
-      Previous
-    </button>
-    <span
-      *ngFor="let page of [].constructor(totalPages); let i = index"
-      class="page-number"
-      (click)="goToPage(i + 1)"
-      [class.active]="currentPage === i + 1"
+  <div class="row">
+    <div class="col-12 pokemon-filter">
+      <app-pokemon-filter
+        (filterChange)="onFilterChange($event)"
+      ></app-pokemon-filter>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-12 col-md-6 col-lg-4"
+      *ngFor="let pokemon of filteredPokemons"
     >
-      {{ i + 1 }}
-    </span>
-    <button (click)="goToNextPage()" [disabled]="currentPage === totalPages">
-      Next
-    </button>
+      <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+    </div>
   </div>
 </div>

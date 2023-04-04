@@ -1,2 +1,7 @@
-<input [formControl]="filterInput" type="text" placeholder="Filtrar pokémons...">
-
+<div class="form-group">
+  <input
+    [(ngModel)]="filter"
+    (input)="onFilterChange()"
+    placeholder="Filtrar Pokémons"
+  />
+</div>

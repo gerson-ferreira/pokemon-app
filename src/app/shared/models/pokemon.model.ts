@@ -1,5 +1,7 @@
 export interface Pokemon {
-  id: number;
   name: string;
-  favorite: boolean;
+  id: number | null;
+  types?: string;
+  imageUrl: string;
+  description?: string;
 }
